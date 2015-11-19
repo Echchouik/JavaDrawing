@@ -5,33 +5,33 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 
 /**
- * Listener pour gŽrer la souris dans la zone de dessin
+ * Listener pour gï¿½rer la souris dans la zone de dessin
  */
 public class DrawingMouseListener implements MouseMotionListener, MouseListener {
 
 	Drawing drawing;
 	Shape currentShape = null;
-	
-	public DrawingMouseListener(Drawing d){
+
+	public DrawingMouseListener(Drawing d) {
 		drawing = d;
 	}
-	
+
 	/**
-	 * Bouge la forme sŽlectionnŽe (si une forme est sŽlectionnŽe)
+	 * Bouge la forme sï¿½lectionnï¿½e (si une forme est sï¿½lectionnï¿½e)
 	 */
 	public void mouseDragged(MouseEvent e) {
-		if(currentShape != null){
+		if (currentShape != null) {
 			currentShape.setOrigin(e.getPoint());
 			drawing.repaint();
 		}
 	}
-	
+
 	/**
-	 * SŽlectionne la forme sur laquelle l'utilisateur a cliquŽ
+	 * Sï¿½lectionne la forme sur laquelle l'utilisateur a cliquï¿½
 	 */
 	public void mousePressed(MouseEvent e) {
-		for(Shape s : drawing){
-			if(s.isOn(e.getPoint())){
+		for (Shape s : drawing) {
+			if (s.isOn(e.getPoint())) {
 				currentShape = s;
 				break;
 			}
@@ -39,7 +39,7 @@ public class DrawingMouseListener implements MouseMotionListener, MouseListener 
 	}
 
 	/**
-	 * DŽsŽlectionne la forme
+	 * Dï¿½sï¿½lectionne la forme
 	 */
 	public void mouseReleased(MouseEvent e) {
 		currentShape = null;
@@ -49,12 +49,15 @@ public class DrawingMouseListener implements MouseMotionListener, MouseListener 
 	public void mouseMoved(MouseEvent e) {
 	}
 
-	public void mouseClicked(MouseEvent e) {
-	}
-
 	public void mouseEntered(MouseEvent e) {
 	}
 
 	public void mouseExited(MouseEvent e) {
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }

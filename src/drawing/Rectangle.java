@@ -9,16 +9,17 @@ public class Rectangle extends Shape {
 	int width;
 	int height;
 	Color color;
-	
-	public Rectangle(Point origin, int width, int height, Color color){
+
+	public Rectangle(Point origin, int width, int height, Color color) {
 		this.origin = origin;
 		this.width = width;
 		this.height = height;
 		this.color = color;
 	}
-	
+
 	public boolean isOn(Point p) {
-		return(p.x > origin.x && p.x < origin.x+width && p.y > origin.y && p.y < origin.y+height);
+		return (p.x > origin.x && p.x < origin.x + width && p.y > origin.y && p.y < origin.y
+				+ height);
 	}
 
 	public void paint(Graphics g) {
