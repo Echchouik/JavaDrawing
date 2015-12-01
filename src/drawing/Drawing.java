@@ -111,4 +111,31 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 		notifyObservers();
 	}
 
+	/**
+	 * dupliquer une forme sélectionnée
+	 */
+	public void dupliquer() {
+			for (Shape s: shapesGroup){
+				Point p = new Point(s.getOrigin());
+				p.y += 100;
+
+				if (s instanceof Rectangle){
+					Rectangle r = (Rectangle) s;
+					shapes.add(new Rectangle(p, r.getWidth(), r.getHeight(), r.getColor()));
+					cpt++;
+					notifyObservers();
+				}
+
+				if (s instanceof Circle){
+					Circle c = (Circle) s;
+					shapes.add(new Circle(p, c.getRadius(), c.getColor()));
+					cpt++;
+					notifyObservers();
+				}
+			}
+
+			shapesGroup.clear();
+			this.repaint();
+	}
+
 }

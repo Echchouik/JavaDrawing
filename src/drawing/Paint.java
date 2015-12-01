@@ -4,12 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.SwingConstants;
+import javax.swing.*;
 import javax.swing.border.BevelBorder;
 
 /**
@@ -27,6 +22,7 @@ public class Paint implements Observer {
 	private JPanel statusPanel;
 	private JLabel counterLab;
 	private JLabel labelCounter;
+	private JButton dupliquerButton;
 
 	// Constructeur avec paramettre
 	public Paint(CounterController controller) {
@@ -35,12 +31,13 @@ public class Paint implements Observer {
 		rectangleButton = new JButton("Rectangle");
 		counterLab = new JLabel();
 		labelCounter = new JLabel();
+		dupliquerButton = new JButton("Dupliquer");
 
 		// listeners pour les boutons compteur
 		circleButton.addActionListener(controller);
 		rectangleButton.addActionListener(controller);
 		clearButton.addActionListener(controller);
-
+        dupliquerButton.addActionListener(controller);
 	}
 
 	public void run() {
@@ -62,6 +59,7 @@ public class Paint implements Observer {
 		buttonPanel.add(clearButton);
 		buttonPanel.add(circleButton);
 		buttonPanel.add(rectangleButton);
+		buttonPanel.add(dupliquerButton);
 
 		statusPanel.add(labelCounter);
 		statusPanel.add(counterLab);
@@ -73,6 +71,7 @@ public class Paint implements Observer {
 		clearButton.addActionListener(new ClearButtonListener(drawing));
 		circleButton.addActionListener(new CircleButtonListener(drawing));
 		rectangleButton.addActionListener(new RectangleButtonListener(drawing));
+		dupliquerButton.addActionListener(new DupliquerButtonListner(drawing));
 
 		// listeners pour la zone de dessin
 		DrawingMouseListener l = new DrawingMouseListener(drawing);

@@ -14,6 +14,10 @@ public abstract class Shape {
 		origin = p;
 	}
 
+	public Point getOrigin() {
+		return origin;
+	}
+
 	/**
 	 * dessine la forme sur un Graphics
 	 */
