@@ -15,12 +15,14 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	private static final long serialVersionUID = 1L;
 
 	public ArrayList<Shape> shapes;
+	public ArrayList<Shape> shapesGroup;
 	public Vector<Observer> observers = new Vector<>();
 	int cpt;
 
 	public Drawing() {
 		super();
 		shapes = new ArrayList<Shape>();
+		shapesGroup = new ArrayList<Shape>();
 	}
 
 	/**
@@ -28,6 +30,20 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 	 */
 	public Iterator<Shape> iterator() {
 		return shapes.iterator();
+	}
+
+	/**
+	 * return size of shapes
+	 */
+	public int getShapeSize() {
+		return shapes.size();
+	}
+
+	/**
+	 * return size of group of shapes
+	 */
+	public int getShapeGroupSize() {
+		return shapesGroup.size();
 	}
 
 	/**
@@ -40,6 +56,18 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 		this.repaint();
 	}
 
+	/**
+	 * ajout des forems selectionnee
+	 * @param s
+     */
+	public void addShapeGroup(Shape s){
+		shapesGroup.add(s);
+	}
+
+	/**
+	 *
+	 * @param obs
+     */
 	public void addObserver(Observer obs) {
 		observers.add(obs);
 	}
@@ -68,6 +96,16 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 		this.repaint();
 	}
 
+	/**
+	 * enleve le groupe des formes selectionnee
+	 */
+	public void clearShapeGroup(){
+		shapesGroup.clear();
+	}
+
+	/**
+	 * Remet le compteur a zero
+	 */
 	public void remise() {
 		cpt = 0;
 		notifyObservers();
