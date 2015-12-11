@@ -16,6 +16,8 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 
 	public ArrayList<Shape> shapes;
 	public ArrayList<Shape> shapesGroup;
+	public ArrayList<Shape> undoListe;
+	public ArrayList<Shape> redoListe;
 	public Vector<Observer> observers = new Vector<>();
 	int cpt;
 
@@ -23,6 +25,8 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 		super();
 		shapes = new ArrayList<Shape>();
 		shapesGroup = new ArrayList<Shape>();
+		undoListe = new ArrayList<Shape>();
+		redoListe = new ArrayList<Shape>();
 	}
 
 	/**
@@ -136,6 +140,36 @@ public class Drawing extends JPanel implements Iterable<Shape> {
 
 			shapesGroup.clear();
 			this.repaint();
+	}
+
+	/**
+	 * Undo la derniere modification
+	 */
+	public void undo() {
+		if (undoListe.size() > 0) {
+			Shape s = undoListe.get(undoListe.size() - 1);
+			undoListe.add(s);
+			shapes.remove(s);
+			this.repaint();
+			undoListe.remove(s);
+			notifyObservers();
+			cpt--;
+		}
+	}
+
+	/**
+	 * Redo la derniere modification
+	 */
+	public void redo() {
+		if (redoListe.size() > 0) {
+			Shape s = redoListe.get(redoListe.size() - 1);
+			redoListe.add(s);
+			shapes.add(s);
+			this.repaint();
+			redoListe.remove(s);
+			notifyObservers();
+			cpt++;
+		}
 	}
 
 }

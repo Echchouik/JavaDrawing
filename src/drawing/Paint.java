@@ -23,6 +23,8 @@ public class Paint implements Observer {
 	private JLabel counterLab;
 	private JLabel labelCounter;
 	private JButton dupliquerButton;
+	private JButton undoButton;
+	private JButton redoButton;
 
 	// Constructeur avec paramettre
 	public Paint(CounterController controller) {
@@ -32,12 +34,16 @@ public class Paint implements Observer {
 		counterLab = new JLabel();
 		labelCounter = new JLabel();
 		dupliquerButton = new JButton("Dupliquer");
+		undoButton = new JButton("Undo");
+		redoButton = new JButton("Redo");
 
 		// listeners pour les boutons compteur
 		circleButton.addActionListener(controller);
 		rectangleButton.addActionListener(controller);
 		clearButton.addActionListener(controller);
         dupliquerButton.addActionListener(controller);
+		undoButton.addActionListener(controller);
+		redoButton.addActionListener(controller);
 	}
 
 	public void run() {
@@ -60,6 +66,8 @@ public class Paint implements Observer {
 		buttonPanel.add(circleButton);
 		buttonPanel.add(rectangleButton);
 		buttonPanel.add(dupliquerButton);
+		buttonPanel.add(undoButton);
+		buttonPanel.add(redoButton);
 
 		statusPanel.add(labelCounter);
 		statusPanel.add(counterLab);
@@ -72,6 +80,8 @@ public class Paint implements Observer {
 		circleButton.addActionListener(new CircleButtonListener(drawing));
 		rectangleButton.addActionListener(new RectangleButtonListener(drawing));
 		dupliquerButton.addActionListener(new DupliquerButtonListner(drawing));
+		undoButton.addActionListener(new UndoButtonListner(drawing));
+		redoButton.addActionListener(new RedoButtonListner(drawing));
 
 		// listeners pour la zone de dessin
 		DrawingMouseListener l = new DrawingMouseListener(drawing);
